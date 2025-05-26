@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sigma.Infra.Data.Context;
@@ -11,9 +12,11 @@ using Sigma.Infra.Data.Context;
 namespace Sigma.Infra.Data.Migrations
 {
     [DbContext(typeof(SigmaContext))]
-    partial class SigmaContextModelSnapshot : ModelSnapshot
+    [Migration("20250526005556_second")]
+    partial class second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,40 +70,6 @@ namespace Sigma.Infra.Data.Migrations
                         .HasName("pk_projetos");
 
                     b.ToTable("projetos");
-                });
-
-            modelBuilder.Entity("Sigma.Domain.Entities.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Cargo")
-                        .HasColumnType("integer")
-                        .HasColumnName("cargo");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("email");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("senha");
-
-                    b.HasKey("Id")
-                        .HasName("pk_usuarios");
-
-                    b.ToTable("usuarios");
                 });
 #pragma warning restore 612, 618
         }

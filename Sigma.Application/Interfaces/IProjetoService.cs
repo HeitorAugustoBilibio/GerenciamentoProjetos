@@ -6,7 +6,9 @@ namespace Sigma.Application.Interfaces
 {
     public interface IProjetoService
     {
-        Task<bool> Inserir(ProjetoNovoDto model);
         Task<List<ProjetosDto>> BuscarTodos();
+        Task<bool> InserirProjeto(ProjetoNovoDto model);
+        Task<bool> EditarProjeto(ProjetoNovoDto model, int id);
+        Task<bool> DeletarProjeto(int id);
     }
 }

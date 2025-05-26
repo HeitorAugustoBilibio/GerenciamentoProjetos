@@ -10,7 +10,9 @@ namespace Sigma.Application.Mappers
         public ProjetoMapper()
         {
             CreateMap<ProjetoNovoDto, Projeto>();
-            CreateMap<Projeto, ProjetosDto>();
+            CreateMap<Projeto, ProjetosDto>()
+            .ForMember(dest => dest.Risco, opt => opt.MapFrom(src => src.Risco.ToString()))
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
         }
     }
 }
