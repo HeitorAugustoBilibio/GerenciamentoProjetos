@@ -19,9 +19,21 @@ namespace Sigma.Infra.Data.Repositories
             _dbContext = context;
         }
 
+        public async Task<Usuario> BuscarPorIdAsync(int id)
+        {
+            return await _dbContext.Usuarios.Where(u => u.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Usuario>> BuscarTodos()
         {
             return await _dbContext.Usuarios.OrderBy(u => u.Id).ToListAsync();
+        }
+
+        public Task<bool> EditarUsuarioAsync(Usuario entidade)
+        {
+            _dbContext.Usuarios.Update(entidade);
+            _dbContext.SaveChangesAsync();
+            return Task.FromResult(true);
         }
 
         public Task<bool> Inserir(Usuario entidade)
@@ -29,6 +41,13 @@ namespace Sigma.Infra.Data.Repositories
             _dbContext.Usuarios.Add(entidade);
             _dbContext.SaveChangesAsync();
             return Task.FromResult(true);
+        }
+
+        public async Task<bool> DeletarUsuarioAsync(Usuario entidade)
+        {
+            _dbContext.Usuarios.Remove(entidade);
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
     }
 }

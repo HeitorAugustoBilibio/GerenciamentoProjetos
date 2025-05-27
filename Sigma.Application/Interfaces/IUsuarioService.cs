@@ -11,6 +11,8 @@ namespace Sigma.Application.Interfaces
     {
         Task<List<UsuarioDTo>> BuscarTodos();
         Task<bool> Inserir(UsuarioDTo usuarioDto);
+        Task<bool> EditarProjeto(UsuarioDTo usuarioDto, int id);
+        Task<bool> DeletarUsuario(int id);
 
     }
 }

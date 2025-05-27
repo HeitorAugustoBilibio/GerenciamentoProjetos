@@ -14,7 +14,8 @@ namespace Sigma.Application.Mappers
     {
         public UsuarioMapper()
         {
-            CreateMap<UsuarioDTo, Usuario>();
+            CreateMap<UsuarioDTo, Usuario>()
+                .ForMember(dest => dest.Cargo, opt => opt.MapFrom(src => src.Cargo.Equals("Administrador", StringComparison.OrdinalIgnoreCase) ? Cargo.Administrador : Cargo.Cliente));
             CreateMap<Usuario, UsuarioDTo>()
                 .ForMember(dest => dest.Cargo, opt => opt.MapFrom(src => src.Cargo.ToString()));
 
