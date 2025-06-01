@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Sigma.Application.Dtos
 {
-    public class LoginDTo
+    public class AuthenticateResponseDTo
     {
+        public string Token { get; set; }
+        public string Nome { get; set; }
         public string Email { get; set; }
-        public string Senha { get; set; }
+        public string Cargo { get; set; }
     }
 }

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Sigma.Application.Interfaces
 {
-    public interface IAuthorizationService
+    public interface IAuthService
     {
-        Task<RetornoLoginDTo> Login(LoginDTo login);
+        Task<AuthenticateResponseDTo> Authenticate(AuthenticateRequestDTo request);
     }
 }

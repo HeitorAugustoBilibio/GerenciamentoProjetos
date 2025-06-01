@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sigma.Application.Dtos;
 using Sigma.Application.Interfaces;
 using Sigma.Domain.Dtos;
@@ -17,6 +18,7 @@ namespace Sigma.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador, Cliente")]
         [Route("BuscarTodos")]
         public async Task<IActionResult> Buscar()
         {
@@ -25,6 +27,7 @@ namespace Sigma.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador, Cliente")]
         [Route("Inserir")]
         public async Task<IActionResult> Inserir([FromBody] ProjetoNovoDto model)
         {
@@ -32,6 +35,7 @@ namespace Sigma.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Administrador, Cliente")]
         [Route("Atualizar")]
         public async Task<IActionResult> Atualizar([FromBody] ProjetoNovoDto model, int id)
         {
@@ -42,6 +46,7 @@ namespace Sigma.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Administrador, Cliente")]
         [Route("Deletar")]
         public async Task<IActionResult> Deletar(int id)
         {
